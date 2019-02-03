@@ -112,7 +112,8 @@ ul {
   .login form {
       width: 300px;
       float: right;
-      margin: 90px;
+      margin-top: 5%;
+      margin-right: 90px;
       color: white;
       font-weight: bolder;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
