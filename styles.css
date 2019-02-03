@@ -1,0 +1,117 @@
+/* body {
+    background-image: url('images/pokegrassbg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+} */
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+  
+.bg { 
+    /* The image used */
+    background-image: url("images/bg-calc.png");
+  
+    /* Full height */
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    background-position-y: -1;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* navbar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-left: 30px;
+    margin-top: 0px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .nav img {
+      width: 60%;
+      margin: 0;
+      padding:0;
+      padding-top: 10px;
+  }
+
+  .nav .button {
+      background-color: #00B2DF;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 20px;
+      font-size: 23px;
+      padding-right: 25px;
+      padding-left: 25px;
+      margin-left: 30px;
+      margin-top: 30px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .nav {
+       padding-top: 10px;
+  }
+  
+  /* login form */
+  .login label, .login input {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 24px;
+      text-align: center;
+  }
+
+  .login input {
+      padding-bottom: 20px;
+      padding-top: 20px;
+      background-color: #FCD12D;
+      margin-bottom: 30px;
+      color: #130094;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      border-radius: 15px;
+      margin-top: 20px;
+      font-size: 27px;
+      font-weight: bolder;
+    }
+
+  .login .info {
+      background-color: #00B2DF;
+      color: white;
+      border-radius: 15px;
+      margin-top: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      font-weight: normal;
+  }
+
+  .login form {
+      width: 300px;
+      float: right;
+      margin: 90px;
+      color: white;
+      font-weight: bolder;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
