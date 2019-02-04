@@ -118,3 +118,10 @@ ul {
       font-weight: bolder;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
+
+  /* canvas sprite 1 */
+  .canvas {
+      position: fixed;
+      top: 60%;
+      left: 10%;
+  }
