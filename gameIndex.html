@@ -27,14 +27,23 @@
         <!-- canvas (for drawing calcumons and animating-->
         <canvas class = "game"></canvas>
         <!-- place for answers -->
-        <input class = "solution" value="Enter solution">
-        <input class = "solution-submit button" type="submit" value="Submit">
+        <input id = "userInput" class = "solution" value="Enter solution">
+        <input id = "submit" class = "solution-submit button" type="submit" value="Submit">
       </div>
       <!-- attacks (buttons) -->
       <div>
 
       </div>
     </div>
+
+    <script>
+      let submit = document.getElementById('submit')
+      let userInput = null
+      submit.onclick = function() {
+          userInput = document.getElementById('userInput').value
+          alert(userInput)
+      }
+    </script>
   </body>
 
 </html>
