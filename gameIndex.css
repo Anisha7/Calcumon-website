@@ -59,13 +59,47 @@ ul {
       padding: 20px;
       width: 500px;
       font-size: 24px;
+      position: relative;
   }
 
-  .content {
+  .problem-content {
       text-align: center;
   }
 
+  input {
+      display: inline-block;
+  }
   /* game canvas */
 canvas {
-    width: 90%;
+    /* width: 90%; */
+    position: relative;
+}
+
+body {
+    background-color:  #FCD12D;
+    overflow: hidden;
+}
+
+.button {
+    color: #130094;
+    background-color: #FCD12D;
+    padding: 20px;
+    margin: 20px;
+    margin-right: 40px;
+    float: center;
+    border-radius: 15px;
+    font-size: 30px;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: 30px;
+    margin-top: 300px;
+    position: relative;
+    font-weight: bold;
+    border: 1px solid white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
+}
+
+.content:not(.game) {
+    z-index: 1000;
 }
