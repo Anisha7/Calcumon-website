@@ -33,7 +33,21 @@
     <script src = "Player.js"></script>
     <script src = "Game.js"></script>
     <script>
-        
+        let canvas = document.getElementById("game");
+        // 2D rendering context, to paint to canvas
+        let ctx = canvas.getContext("2d");
+        let Calcumon = new Game(ctx)
+        ctx.canvas.width  = window.innerWidth;
+        // ctx.canvas.height = window.innerHeight;
+
+        Calcumon.draw()
+        function run() {
+            Calcumon.update()
+            console.log('run')
+        }
+        run()
+        // will execute draw every 10 milliseconds
+        setInterval(run, 10); //not working???
     </script>
   </body>
 

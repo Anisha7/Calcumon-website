@@ -23,8 +23,8 @@ class Game {
         this.player = new Player() // initialize player
         this.computer = '' // implement computer class
         this.input = ''
+        this.foundSolution = false
         
-          
     }
 
     // IMPLEMENT FOR THIS VERSION
@@ -38,6 +38,8 @@ class Game {
         console.log(this.input._value)
 
         alert(this.input._value)
+        this.foundSolution = true
+        
         return true
     }
 
@@ -51,6 +53,7 @@ class Game {
     drawProblem() {
         ctx.font = "30px Arial";
         ctx.fillStyle = "white";
+        console.log(this.player.currProblem)
         ctx.fillText("Problem: "+this.player.currProblem, 100, 50);
     }
 
@@ -68,8 +71,8 @@ class Game {
             borderRadius: 3,
             boxShadow: '1px 1px 0px #fff',
             innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-            placeHolder: 'Enter your solution here...',
-            value: '',
+            // placeHolder: 'Enter your solution here...',
+            value: this.input._value,
             x: ctx.canvas.width/2,
             y: 20,
             onsubmit: () => { 
@@ -81,39 +84,48 @@ class Game {
 
     // TBD: Maybe this function, or maybe do it through html
     draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         // display problem
         this.drawProblem()
         // display input field
+        // if (this.input == ''){
         this.drawInputField()
+        // }
+        
     }
 
     // IMPLEMENT FOR THIS VERSION
     // run this function on a time loop
     update() {
-        this.draw()
+        // this.drawProblem()
 
         // Gets the player input from the problem-solution form when solution is submitted by player
         let userInput = this.player.respond()
         
         // check if player got the solution for the problem
-        if (this.verifySolution(userInput) == true) {
+        if (this.foundSolution == true) {
             // if yes, call new problem
-            this.newProblem()
+            this.player.newProblem()
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.drawInputField()
+            this.input._value = ''
             this.player.prevResponseCorrectness = true
+            this.foundSolution = false
             // add to player mana based on problem's value
         } else {
             // if no, clear input field and display try again above the input box
-            document.getElementById('userInput').placeholder = 'try again!'
+            // document.getElementById('userInput').placeholder = 'try again!'
+            this.drawProblem()
         }
         
 
         // allow skipping of a problem
-        let skip = document.getElementById('skip')
-        skip.onclick = function() {
-            this.player.prevResponseCorrectness = false
-            this.newProblem()
-            return
-        }
+        // let skip = document.getElementById('skip')
+        // skip.onclick = function() {
+        //     this.player.prevResponseCorrectness = false
+        //     this.newProblem()
+        //     return
+        // }
 
         // handle gameOver state
         if (this.player.health == 0 || this.computer.health == 0) {
@@ -124,12 +136,3 @@ class Game {
     
 }
 
-let canvas = document.getElementById("game");
-// 2D rendering context, to paint to canvas
-let ctx = canvas.getContext("2d");
-let Calcumon = new Game(ctx)
-ctx.canvas.width  = window.innerWidth;
-// ctx.canvas.height = window.innerHeight;
-
-// will execute draw every 10 milliseconds
-setInterval(Calcumon.update(), 10);

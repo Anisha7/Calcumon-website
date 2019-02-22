@@ -36,19 +36,19 @@ class Player {
         // update currProblem
         this.currProblem = problem
         // update currSolution with new solution
-        this.currSolution = solve(problem)
+        // this.currSolution = solve(problem)
     }
 
     // IMPLEMENT THIS FOR VERSION ONE
     respond() {
         // NOTE: CHECK IF WE CAN USE document.getElementById in this file to access gamePlay.handlebars!
-        let submit = document.getElementById('submit')
-        let userInput = null
-        submit.onclick = function() {
-            userInput = document.getElementById('userInput').value
-            alert(userInput)
-        }
-        return userInput
+        // let submit = document.getElementById('submit')
+        // let userInput = null
+        // submit.onclick = function() {
+        //     userInput = document.getElementById('userInput').value
+        //     alert(userInput)
+        // }
+        // return userInput
     }
 
     attack(i) {
