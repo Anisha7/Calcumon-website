@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CacluMon</title>
+    <link rel="stylesheet" href="../gameIndex.css">
+
+    <!-- For getting user input through canvas element -->
+    <script src = "CanvasInput/CanvasInput.js"></script>
+    <script src = "CanvasInput/CanvasInput.min.js"></script>
+  </head>
+
+  <body>
+
+    <div class = "content">
+      <!-- navbar (settings, level, dashboard) -->
+      <div class = "nav">
+          <ul>
+              <li><a href="#signup">settings</a></li>
+              <li>level: 0</li>
+              <li style="float:right">
+                  <a class="active" href="#home">
+                      Dashboard
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <canvas class = "game" id="game" width="480" height="320"></canvas>
+    </div>
+
+    <script src="problemGenerator.js"></script>
+    <script src="solutionApi.js"></script>
+    <script src = "Player.js"></script>
+    <script src = "Game.js"></script>
+    <script>
+        
+    </script>
+  </body>
+
+</html>
