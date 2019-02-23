@@ -85,9 +85,11 @@ class Game {
     // TBD: Maybe this function, or maybe do it through html
     draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         // display problem
         this.drawProblem()
         // display input field
+        this.input._value = ''
         // if (this.input == ''){
         this.drawInputField()
         // }
@@ -106,12 +108,8 @@ class Game {
         if (this.foundSolution == true) {
             // if yes, call new problem
             this.player.newProblem()
-            // clear old problem and input field
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.input._value = ''
-            // draw new problem and input field
-            this.drawInputField()
-            this.drawProblem()
+            // draw
+            this.draw()
             // add to mana
             this.player.mana += this.player.currProblemMana
             this.player.prevResponseCorrectness = true
