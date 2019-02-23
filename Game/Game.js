@@ -106,17 +106,20 @@ class Game {
         if (this.foundSolution == true) {
             // if yes, call new problem
             this.player.newProblem()
+            // clear old problem and input field
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.input._value = ''
+            // draw new problem and input field
             this.drawInputField()
             this.drawProblem()
+            // add to mana
+            this.player.mana += this.player.currProblemMana
             this.player.prevResponseCorrectness = true
             this.foundSolution = false
-            // add to player mana based on problem's value
+
         } else {
-            // if no, clear input field and display try again above the input box
-            // document.getElementById('userInput').placeholder = 'try again!'
-            // this.drawProblem()
+            // TODO: if no, clear input field and display try again above the input box
+            
             this.player.prevResponseCorrectness = false
             this.foundSolution = false
         }

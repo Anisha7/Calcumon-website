@@ -22,6 +22,7 @@ class Player {
 
         this.currProblem = ''
         this.currSolution = ''
+        this.currProblemMana = 0
         this.newProblem()
     }
 
@@ -31,10 +32,13 @@ class Player {
         let problemCount = this.problemCount
         let prevResult = this.prevResponseCorrectness // boolean
         // get a new problem based on player level
-        let problem = getProblem(level, problemCount, prevResult)
+        
+
+        let result = getProblem(level, problemCount, prevResult)
         
         // update currProblem
-        this.currProblem = problem
+        this.currProblem = result[0]
+        this.currProblemMana = result[1]
         // update currSolution with new solution
         // this.currSolution = solve(problem)
     }
