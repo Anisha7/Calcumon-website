@@ -100,9 +100,7 @@ class Game {
     // run this function on a time loop
     update() {
         // this.drawProblem()
-
-        // Gets the player input from the problem-solution form when solution is submitted by player
-        let userInput = this.player.respond()
+        // run verify solution and foundSolution
         
         // check if player got the solution for the problem
         if (this.foundSolution == true) {
