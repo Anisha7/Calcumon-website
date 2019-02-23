@@ -18,7 +18,7 @@ class Player {
         this.response = ''
         this.level = level // access from database
         this.prevResponseCorrectness = true // Was the last response correct?
-        this.problemCount = 0 // how many problems did player deal with 
+        this.problemCount = 1 // how many problems did player deal with 
 
         this.currProblem = ''
         this.currSolution = ''
@@ -41,6 +41,9 @@ class Player {
         this.currProblemMana = result[1]
         // update currSolution with new solution
         // this.currSolution = solve(problem)
+
+        // increment problem count
+        this.problemCount += 1
     }
 
     // IMPLEMENT THIS FOR VERSION ONE

@@ -116,6 +116,8 @@ class Game {
             this.player.mana += this.player.currProblemMana
             this.player.prevResponseCorrectness = true
             this.foundSolution = false
+            console.log("PLAYER MANA:")
+            console.log(this.player.mana)
 
         } else {
             // TODO: if no, clear input field and display try again above the input box

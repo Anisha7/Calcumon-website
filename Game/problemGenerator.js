@@ -383,12 +383,21 @@ let topics = [new Simple(), new SimpleFractions(), new MultiplyFractions(), new 
 // for each level, give x easy problems, x medium problems, x hard problems in this order
 // i represents what problem to give
 // result represents whether or not prev answer was correct (false if question is skipped)
-function getProblem(level, i=0, result=true) {
+function getProblem(level, i, result) {
     let x = 5 // how many problems of each category
     topic = topics[level-1]
 
     // what problem pattern to use (1, 2, 3)?
-    pattern = i/5 + 1
+    pattern = i/5
+    if (pattern < 2) {
+        pattern = 1
+    } else if (pattern < 3) {
+        pattern = 2
+    } else {
+        pattern = 3
+    }
+    console.log('pattern: ')
+    console.log(pattern)
     // easier for same category if incorrect answer
     if (result == false && pattern > 1){
         pattern += 1
