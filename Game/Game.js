@@ -90,9 +90,7 @@ class Game {
         this.drawProblem()
         // display input field
         this.input._value = ''
-        // if (this.input == ''){
         this.drawInputField()
-        // }
         
     }
 
@@ -116,7 +114,7 @@ class Game {
             console.log(this.player.mana)
 
         } else {
-            // TODO: if no, clear input field and display try again above the input box
+            // TODO: display try again above the input box
             
             this.player.prevResponseCorrectness = false
             this.foundSolution = false
