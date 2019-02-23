@@ -54,7 +54,7 @@ class Game {
         ctx.font = "30px Arial";
         ctx.fillStyle = "white";
         console.log(this.player.currProblem)
-        ctx.fillText("Problem: "+this.player.currProblem, 100, 50);
+        ctx.fillText("Problem: "+this.player.currProblem, 60, 50);
     }
 
     drawInputField() {
@@ -73,7 +73,7 @@ class Game {
             innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
             // placeHolder: 'Enter your solution here...',
             value: this.input._value,
-            x: ctx.canvas.width/2,
+            x: ctx.canvas.width/2 + 50,
             y: 20,
             onsubmit: () => { 
                 return this.verifySolution() 

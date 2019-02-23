@@ -388,10 +388,9 @@ function getProblem(level, i, result) {
     topic = topics[level-1]
 
     // what problem pattern to use (1, 2, 3)?
-    pattern = i/5
-    if (pattern < 2) {
+    if (i < x) {
         pattern = 1
-    } else if (pattern < 3) {
+    } else if (pattern < x*2) {
         pattern = 2
     } else {
         pattern = 3
