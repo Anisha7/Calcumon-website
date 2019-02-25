@@ -21,8 +21,11 @@ class Attacks {
         this.attacks = attacks
         // number of attacks
         this.numAttacks = 6 // use len(this.attacks)
+        this.attackPositions = [0,0,0,0,0,0]
         // width, height position for attack
         this.width = ctx.canvas.width/this.numAttacks;
+        console.log("WIDTH: ")
+        console.log(this.width)
         this.height = 100;
         // x,y position for first attack click box's top left corner
         this.x = 0
@@ -46,7 +49,9 @@ class Attacks {
 
         // attack boxes
         for (let i = 0; i < this.numAttacks; i++) {
-            ctx.rect(this.x + this.width*i, this.y, this.width, this.height)
+            let x = this.x + this.width*i
+            this.attackPositions[i] = x
+            ctx.rect(x, this.y, this.width, this.height)
             ctx.stroke()
         }
     }
@@ -58,6 +63,12 @@ class Attacks {
         if (y >= this.y & y <= this.y + this.height) {
             // check which x it falls into
             console.log("RIGHT RANGE")
+            for (let i = 0; i < this.numAttacks; i++) {
+                if (x >= this.attackPositions[i] & x <= this.attackPositions[i]+this.width) {
+                    console.log("THIS ATTACK: ")
+                    console.log(i)
+                }
+            }
         }
            
     }
