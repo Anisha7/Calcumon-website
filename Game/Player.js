@@ -38,7 +38,7 @@ class Player {
         
         // update currProblem
         this.currProblem = makeProblemReadable(result[0])
-        this.currProblemMana = result[1]
+        this.currProblemMana = result[1]*10
         // update currSolution with new solution
         // console.log(result[0])
         // console.log('GETTING PROBLEM-SOLUTION')
@@ -47,6 +47,10 @@ class Player {
 
         // increment problem count
         this.problemCount += 1
+    }
+
+    incrementMana() {
+        this.mana += this.currProblemMana
     }
 
     // IMPLEMENT THIS FOR VERSION ONE

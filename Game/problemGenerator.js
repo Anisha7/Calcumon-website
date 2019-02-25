@@ -404,15 +404,15 @@ function getProblem(level, i, result) {
 
     // get the problem
     if (pattern <= 1) {
-        return [topic.pattern1(), pattern]
+        return [topic.pattern1(), 1]
     }
 
     else if (pattern == 2) {
-        return [topic.pattern2(), pattern]
+        return [topic.pattern2(), 2]
     }
 
     else if (pattern >= 3) {
-        return [topic.pattern3(), pattern]
+        return [topic.pattern3(), 3]
     }
 
     return [topic.pattern3(), 3]
