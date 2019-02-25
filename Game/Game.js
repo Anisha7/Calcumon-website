@@ -67,6 +67,8 @@ class Attacks {
                 if (x >= this.attackPositions[i] & x <= this.attackPositions[i]+this.width) {
                     console.log("THIS ATTACK: ")
                     console.log(i)
+                    // i is the correct location for the attack
+                    return i
                 }
             }
         }
@@ -100,6 +102,8 @@ class Game {
         console.log(this.input._value)
 
         alert(this.input._value)
+
+        // set this to true in order to handle updates when solution is found
         this.foundSolution = true
         
         return true
@@ -192,8 +196,10 @@ class Game {
         let y = e.clientY - 100
         console.log(x,y)
 
-        this.attacks.attackHandler(x,y)
-
+        // handle attack
+        let attackIndex = this.attacks.attackHandler(x,y)
+        let attackPower = this.player.attack(attackIndex)
+        // TODO: opponent health -= attackPower
         
     }
 
@@ -225,6 +231,8 @@ class Game {
             this.player.prevResponseCorrectness = false
             this.foundSolution = false
         }
+
+        
 
         // handle gameOver state
         if (this.player.health == 0 || this.computer.health == 0) {

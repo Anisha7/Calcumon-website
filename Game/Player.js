@@ -51,22 +51,19 @@ class Player {
 
     // IMPLEMENT THIS FOR VERSION ONE
     respond() {
-        // NOTE: CHECK IF WE CAN USE document.getElementById in this file to access gamePlay.handlebars!
-        // let submit = document.getElementById('submit')
-        // let userInput = null
-        // submit.onclick = function() {
-        //     userInput = document.getElementById('userInput').value
-        //     alert(userInput)
-        // }
-        // return userInput
+        // currently handled in game.js
     }
 
+    // TODO
     attack(i) {
         // pick attack at index i
         // subtract attack token cost from player's tokens
         // return health to subtract
             // handle return value in game class
             // to subtract health from enemy
+
+        // TODO: delete when function is implemented
+        return 5
     }
 
 }
