@@ -18,7 +18,7 @@
 class Attacks {
     constructor(ctx, attacks=[]) {
         this.ctx = ctx
-        this.attacks = attacks
+        this.attackNames = ['Punch', 'Revive 10% health', 'Kick', 'Super Attack', 'Dodge', 'Fireball']
         // number of attacks
         this.numAttacks = 6 // use len(this.attacks)
         this.attackPositions = [0,0,0,0,0,0]
@@ -38,13 +38,16 @@ class Attacks {
         this.ctx.font = "30px Arial";
         this.ctx.fillStyle = "Black"
         this.ctx.fillText("Attacks", this.x, this.y-20)
-
+        console.log("DRAWING ATTACKS")
         // attack boxes
         for (let i = 0; i < this.numAttacks; i++) {
             let x = this.x + this.width*i
             this.attackPositions[i] = x
             ctx.rect(x, this.y, this.width, this.height)
             ctx.stroke()
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText(this.attackNames[i], x+20, this.y + (this.height/2))
         }
     }
 
@@ -74,12 +77,14 @@ class Game {
         this.canvas = canvas
         this.gameState = true
 
-        this.player = new Player() // initialize player
+        
         this.computer = '' // implement computer class
         this.input = ''
         this.foundSolution = false
         console.log(ctx.canvas.height)
         this.attacks = new Attacks(ctx)
+
+        this.player = new Player(this.attacks.attackNames) // initialize player
         
     }
 
@@ -151,20 +156,21 @@ class Game {
         // inner filled rectangle (depends on health percentage)
         let health = this.player.health/100
         
-        ctx.fillStyle = "red";
-        ctx.fillRect(x, y, 200*health, 20);
+        // WAS WORKING BEFORE, NOW NOT WORKING??
+        this.ctx.fillStyle = "red";
+        this.ctx.fillRect(x, y, 200*health, 20);
 
         // health text
-        ctx.font = "14px Arial";
-        ctx.fillStyle = "white";
-        ctx.fillText('Health', x+10, y+15)
+        this.ctx.font = "14px Arial";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText('Health', x+10, y+15)
         
         // draw player mana
         let text = 'Mana: ' + this.player.mana
         console.log(text)
-        ctx.font = "20px Arial";
-        ctx.fillStyle = "black";
-        ctx.fillText(text, x, y+50)
+        this.ctx.font = "20px Arial";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText(text, x, y+50)
     }
 
     // TBD: Maybe this function, or maybe do it through html
