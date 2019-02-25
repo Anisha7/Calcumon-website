@@ -71,7 +71,7 @@ ul {
   }
   /* game canvas */
 canvas {
-    /* width: 90%; */
+    width: 97%;
     position: relative;
 }
 
@@ -102,4 +102,11 @@ body {
 
 .content:not(.game) {
     z-index: 1000;
+}
+
+html, body {
+    height: 100%;
+}
+.content {
+    height: 100%;
 }

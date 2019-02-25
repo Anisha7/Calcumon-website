@@ -40,7 +40,10 @@ class Player {
         this.currProblem = makeProblemReadable(result[0])
         this.currProblemMana = result[1]
         // update currSolution with new solution
+        // console.log(result[0])
+        // console.log('GETTING PROBLEM-SOLUTION')
         // this.currSolution = solve(result[0])
+        // console.log('this.currSolution')
 
         // increment problem count
         this.problemCount += 1
