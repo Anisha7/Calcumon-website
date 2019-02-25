@@ -89,7 +89,10 @@ class Game {
         // display problem
         this.drawProblem()
         // display input field
-        this.input._value = ''
+        if (this.input) {
+            this.input._value = ''
+        }
+        
         this.drawInputField()
         
     }
@@ -120,14 +123,6 @@ class Game {
             this.foundSolution = false
         }
         
-
-        // allow skipping of a problem
-        // let skip = document.getElementById('skip')
-        // skip.onclick = function() {
-        //     this.player.prevResponseCorrectness = false
-        //     this.newProblem()
-        //     return
-        // }
 
         // handle gameOver state
         if (this.player.health == 0 || this.computer.health == 0) {

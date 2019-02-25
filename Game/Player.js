@@ -37,10 +37,10 @@ class Player {
         let result = getProblem(level, problemCount, prevResult)
         
         // update currProblem
-        this.currProblem = result[0]
+        this.currProblem = makeProblemReadable(result[0])
         this.currProblemMana = result[1]
         // update currSolution with new solution
-        // this.currSolution = solve(problem)
+        // this.currSolution = solve(result[0])
 
         // increment problem count
         this.problemCount += 1
