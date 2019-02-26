@@ -10,7 +10,7 @@
 // import { solve } from 'solutionApi'
 
 class Player {
-    constructor(health=100, mana=0, attacks=[], level=1) {
+    constructor(attacks=[], health=100, mana=0, level=1) {
         // game
         this.mana = mana
         this.health = health // out of a 100

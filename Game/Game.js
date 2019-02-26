@@ -155,7 +155,9 @@ class Game {
         this.ctx.stroke()
         // inner filled rectangle (depends on health percentage)
         let health = this.player.health/100
-        
+        console.log("HEALTH: ")
+        console.log(health)
+        console.log(200*health)        
         // WAS WORKING BEFORE, NOW NOT WORKING??
         this.ctx.fillStyle = "red";
         this.ctx.fillRect(x, y, 200*health, 20);
