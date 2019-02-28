@@ -85,6 +85,8 @@ class Game {
         this.computer = new Computer(this.attacks.attackNames)
         this.player = new Player(this.attacks.attackNames) // initialize player
         
+        this.attackIndex = null
+        
     }
 
     // IMPLEMENT FOR THIS VERSION
@@ -101,6 +103,7 @@ class Game {
 
         // set this to true in order to handle updates when solution is found
         this.foundSolution = true
+        this.player.prevResponseCorrectness = true
         
         return true
     }
@@ -138,13 +141,15 @@ class Game {
             x: ctx.canvas.width/2 + 50,
             y: 20,
             onsubmit: () => { 
-                return this.verifySolution() 
+                // if player just answered
+                this.verifySolution() 
+                // allow attacking
+                this.attack()
+                return
             }
         });
         this.input.render()
     }
-
-    
 
     // TBD: Maybe this function, or maybe do it through html
     draw() {
@@ -164,26 +169,54 @@ class Game {
 
         // draw player data
         this.player.drawPlayerData(this.ctx)
+        // draw computer data
+        this.computer.drawComputerData(this.ctx)
         
     }
-
-
+    // determines where player attacks or opponent
+    // i = index of attack, value = true for player, false for opponent
+    attack() {
+        // WAIT TILL THEY CHOOSE AN ATTACK...
+        let i = this.attackIndex
+        
+        console.log("attacking, game class")
+        let value = this.player.prevResponseCorrectness;
+        console.log(value)
+        console.log("sol")
+        console.log(this.foundSolution)
+        let power;
+        if (value == true) {
+            power = this.player.attack(i)
+            this.computer.decrementHealth(power)
+            console.log("Attacked computer")
+        }
+        else {
+            power = this.computer.attack()
+            this.player.health -= power
+        }
+        console.log(this.computer.health)
+        return
+    }
     // calling all mouse click handlers
     mouseClickHandler(e) {
         let x = e.clientX
         let y = e.clientY - 100
         console.log(x,y)
 
-        // handle attack
-        let attackIndex = this.attacks.attackHandler(x,y)
-        let attackPower = this.player.attack(attackIndex)
-        // TODO: opponent health -= attackPower
+        // update attack index
+        let i = this.attacks.attackHandler(x,y)
+        if (i){
+            this.attackIndex = this.attacks.attackHandler(x,y)
+        }
+        // execute attack
+        // this.attack(attackIndex)
         
     }
 
     // IMPLEMENT FOR THIS VERSION
     // run this function on a time loop
     update() {
+        // update player and computer data
         // update for responsiveness
         // this.ctx.canvas.width  = window.outerWidth;
         // this.ctx.canvas.height = window.outerHeight;

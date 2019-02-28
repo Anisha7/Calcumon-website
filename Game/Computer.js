@@ -1,14 +1,23 @@
 
 class Computer {
     constructor(attacks=[], health=100) {
-        self.attacks = attacks
-        self.health = health
+        this.attacks = attacks
+        this.health = health
+    }
+
+    decrementHealth(power) {
+        console.log("decrementing:")
+        console.log(this.health)
+        this.health -= power;
+        console.log(this.health)
+        console.log("done")
+        return
     }
 
     attack() {
-        i = Math.random()*(self.attacks.length)
+        let i = Math.random()*((this.attacks.length))
         // pick attack at index i
-        attack = self.attacks[i]
+        let attack = this.attacks[i]
         // subtract attack token cost from player's tokens
         
         if (attack == 'Punch') {
@@ -29,11 +38,38 @@ class Computer {
         }
         // health restore power
         if (attack == 'Revive 10% health') {
-            self.health += 10
-            if (self.health > 100) {
-                self.health = 100
+            this.health += 10
+            if (this.health > 100) {
+                this.health = 100
             }
         }
         return 0
+    }
+
+    // draw attacks for player
+    drawComputerData(ctx) {
+        console.log("COMPUTER DATA")
+        let y = 100
+        let x = ctx.canvas.width/2 + 50
+        // player
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText('COMPUTER DATA: ', x, y+10)
+        // draw player health
+        // outer rectangle
+        ctx.rect(x, y+30, 200, 20)
+        ctx.stroke()
+        // inner filled rectangle (depends on health percentage)
+        let health = this.health/100     
+        console.log(this.health)  
+        console.log(health)
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y+30, 200*health, 20);
+
+        // health text
+        ctx.font = "14px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText('Health', x+10, y+45)
+        
     }
 }

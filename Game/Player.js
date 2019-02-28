@@ -26,6 +26,7 @@ class Player {
         this.currSolution = ''
         this.currProblemMana = 0
         this.newProblem()
+        
     }
 
     // get new problem
@@ -63,9 +64,12 @@ class Player {
     // Returns the health value that needs to be subtracted from opponent
     attack(i) {
         // pick attack at index i
-        attack = self.attacks[i]
+        console.log("in player attack")
+        console.log(i)
+        console.log(this.attacks)
+        let attack = this.attacks[i]
         // subtract attack token cost from player's tokens
-        
+        console.log(attack)
         if (attack == 'Punch') {
             return 10
         }
@@ -84,9 +88,9 @@ class Player {
         }
         // health restore power
         if (attack == 'Revive 10% health') {
-            self.health += 10
-            if (self.health > 100) {
-                self.health = 100
+            this.health += 10
+            if (this.health > 100) {
+                this.health = 100
             }
         }
         return 0
@@ -94,32 +98,34 @@ class Player {
 
     // draw attacks for player
     drawPlayerData(ctx) {
-        let y = 80
+        
+        let y = 100
         let x = 60
+        // player
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText('YOUR DATA: ', x, y+10)
         // draw player health
         // outer rectangle
-        ctx.rect(x, y, 200, 20)
+        ctx.rect(x, y+30, 200, 20)
         ctx.stroke()
         // inner filled rectangle (depends on health percentage)
-        let health = this.health/100
-        console.log("HEALTH: ")
-        console.log(health)
-        console.log(200*health)        
-        // WAS WORKING BEFORE, NOW NOT WORKING??
+        let health = this.health/100       
+
         ctx.fillStyle = "red";
-        ctx.fillRect(x, y, 200*health, 20);
+        ctx.fillRect(x, y+30, 200*health, 20);
 
         // health text
         ctx.font = "14px Arial";
         ctx.fillStyle = "white";
-        ctx.fillText('Health', x+10, y+15)
+        ctx.fillText('Health', x+10, y+45)
         
         // draw player mana
         let text = 'Mana: ' + this.mana
         console.log(text)
         ctx.font = "20px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText(text, x, y+50)
+        ctx.fillText(text, x+250, y+48)
     }
 
 }
