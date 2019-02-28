@@ -15,6 +15,8 @@ class Player {
         this.mana = mana
         this.health = health // out of a 100
         this.attacks = attacks
+        // ['Punch', 'Revive 10% health', 'Kick', 'Super Attack', 'Dodge', 'Fireball']
+        // [-10, +10, -10, -30, (restore what was lost), -20]
         this.response = ''
         this.level = level // access from database
         this.prevResponseCorrectness = true // Was the last response correct?
@@ -58,16 +60,66 @@ class Player {
         // currently handled in game.js
     }
 
-    // TODO
+    // Returns the health value that needs to be subtracted from opponent
     attack(i) {
         // pick attack at index i
+        attack = self.attacks[i]
         // subtract attack token cost from player's tokens
-        // return health to subtract
-            // handle return value in game class
-            // to subtract health from enemy
+        
+        if (attack == 'Punch') {
+            return 10
+        }
+        if (attack == 'Kick') {
+            return 10
+        }
+        if (attack == 'Super Attack') {
+            return 30
+        }
+        if (attack == 'Dodge') {
+            // restore health to before opponent's attack affected it
+            // OR DODGE next attack?
+        }
+        if (attack == 'Fireball') {
+            return 20
+        }
+        // health restore power
+        if (attack == 'Revive 10% health') {
+            self.health += 10
+            if (self.health > 100) {
+                self.health = 100
+            }
+        }
+        return 0
+    }
 
-        // TODO: delete when function is implemented
-        return 5
+    // draw attacks for player
+    drawPlayerData(ctx) {
+        let y = 80
+        let x = 60
+        // draw player health
+        // outer rectangle
+        ctx.rect(x, y, 200, 20)
+        ctx.stroke()
+        // inner filled rectangle (depends on health percentage)
+        let health = this.health/100
+        console.log("HEALTH: ")
+        console.log(health)
+        console.log(200*health)        
+        // WAS WORKING BEFORE, NOW NOT WORKING??
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 200*health, 20);
+
+        // health text
+        ctx.font = "14px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText('Health', x+10, y+15)
+        
+        // draw player mana
+        let text = 'Mana: ' + this.mana
+        console.log(text)
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(text, x, y+50)
     }
 
 }

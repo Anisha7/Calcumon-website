@@ -16,7 +16,7 @@
 // track winner
 // track gameOver state
 class Attacks {
-    constructor(ctx, attacks=[]) {
+    constructor(ctx) {
         this.ctx = ctx
         this.attackNames = ['Punch', 'Revive 10% health', 'Kick', 'Super Attack', 'Dodge', 'Fireball']
         // number of attacks
@@ -76,14 +76,13 @@ class Game {
         this.ctx = ctx
         this.canvas = canvas
         this.gameState = true
-
         
-        this.computer = '' // implement computer class
         this.input = ''
         this.foundSolution = false
         console.log(ctx.canvas.height)
         this.attacks = new Attacks(ctx)
 
+        this.computer = new Computer(this.attacks.attackNames)
         this.player = new Player(this.attacks.attackNames) // initialize player
         
     }
@@ -145,35 +144,7 @@ class Game {
         this.input.render()
     }
 
-    // draw attacks for player
-    drawPlayerData() {
-        let y = 80
-        let x = 60
-        // draw player health
-        // outer rectangle
-        this.ctx.rect(x, y, 200, 20)
-        this.ctx.stroke()
-        // inner filled rectangle (depends on health percentage)
-        let health = this.player.health/100
-        console.log("HEALTH: ")
-        console.log(health)
-        console.log(200*health)        
-        // WAS WORKING BEFORE, NOW NOT WORKING??
-        this.ctx.fillStyle = "red";
-        this.ctx.fillRect(x, y, 200*health, 20);
-
-        // health text
-        this.ctx.font = "14px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText('Health', x+10, y+15)
-        
-        // draw player mana
-        let text = 'Mana: ' + this.player.mana
-        console.log(text)
-        this.ctx.font = "20px Arial";
-        this.ctx.fillStyle = "black";
-        this.ctx.fillText(text, x, y+50)
-    }
+    
 
     // TBD: Maybe this function, or maybe do it through html
     draw() {
@@ -192,7 +163,7 @@ class Game {
         this.attacks.draw(this.ctx)
 
         // draw player data
-        this.drawPlayerData()
+        this.player.drawPlayerData(this.ctx)
         
     }
 
