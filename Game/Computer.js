@@ -3,6 +3,7 @@ class Computer {
     constructor(attacks=[], health=100) {
         this.attacks = attacks
         this.health = health
+        this.calcumon = "monster3"
     }
 
     decrementHealth(power) {
@@ -70,6 +71,19 @@ class Computer {
         ctx.font = "14px Arial";
         ctx.fillStyle = "white";
         ctx.fillText('Health', x+10, y+45)
+
+        // draw calcumon
+        this.drawCalcumon(ctx)
         
+    }
+
+    drawCalcumon(ctx) {
+        let image = document.getElementById(this.calcumon)
+        let x = ctx.canvas.width/2 + 50
+        let y = 250
+        // let width = 200
+        // let height = 200
+        // add width, height parameters after x,y if needed
+        ctx.drawImage(image, x, y, 300, 300); // image, x, y, width, height
     }
 }

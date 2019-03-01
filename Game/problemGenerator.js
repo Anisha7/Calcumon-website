@@ -47,7 +47,7 @@ class Simple {
         let num = getRandomInt(this.max)
         // determine random operand
         let op = this.getOp()
-        let equation = `${pattern1()} ${op} ${num}`
+        let equation = `${this.pattern1()} ${op} ${num}`
         return equation
     }
     
@@ -210,16 +210,16 @@ class DivideFractions {
     
     pattern2() {
         let op = "divided by"
-        let eq1 = pattern1()
-        let eq2 = pattern1()
+        let eq1 = this.pattern1()
+        let eq2 = this.pattern1()
         let equation = `(${eq1}) +    ${op}    + (${eq2})`
         return equation
     }
     
     pattern3() {
         let op = "divided by"
-        let eq1 = pattern2()
-        let eq2 = pattern1()
+        let eq1 = this.pattern2()
+        let eq2 = this.pattern1()
         let equation = `(${eq1}) +    ${op}    + (${eq2})`
         return equation
     }

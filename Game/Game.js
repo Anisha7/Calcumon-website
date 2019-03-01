@@ -19,6 +19,7 @@ class Attacks {
     constructor(ctx) {
         this.ctx = ctx
         this.attackNames = ['Punch', 'Revive 10% health', 'Kick', 'Super Attack', 'Dodge', 'Fireball']
+        this.attackCosts = [10, 20, 10, 30, 20, 30]
         // number of attacks
         this.numAttacks = 6 // use len(this.attacks)
         this.attackPositions = [0,0,0,0,0,0]
@@ -37,7 +38,7 @@ class Attacks {
         // attack label
         this.ctx.font = "30px Arial";
         this.ctx.fillStyle = "Black"
-        this.ctx.fillText("Attacks", this.x, this.y-20)
+        this.ctx.fillText("Attacks    (Pick an attack, then answer the question. If you answer correctly, the attack will execute.)", this.x, this.y-20)
         console.log("DRAWING ATTACKS")
         // attack boxes
         for (let i = 0; i < this.numAttacks; i++) {
@@ -45,9 +46,18 @@ class Attacks {
             this.attackPositions[i] = x
             ctx.rect(x, this.y, this.width, this.height)
             ctx.stroke()
+            ctx.fillStyle = "lightblue";
+            ctx.fillRect(x, this.y, this.width, this.height);
+
+            // attack names
             ctx.font = "20px Arial";
             ctx.fillStyle = "black";
             ctx.fillText(this.attackNames[i], x+20, this.y + (this.height/2))
+            
+            // costs
+            ctx.font = "18px Arial";
+            ctx.fillStyle = "red";
+            ctx.fillText(this.attackCosts[i], x+this.width - 30, this.y + 30)
         }
     }
 
@@ -83,7 +93,7 @@ class Game {
         this.attacks = new Attacks(ctx)
 
         this.computer = new Computer(this.attacks.attackNames)
-        this.player = new Player(this.attacks.attackNames) // initialize player
+        this.player = new Player(this.attacks.attackNames, "") // initialize player with attacks and calcumon name
         
         this.attackIndex = null
         
@@ -187,6 +197,13 @@ class Game {
         let power;
         if (value == true) {
             power = this.player.attack(i)
+            
+            // if attack costs more mana than player has:
+            // give a message
+            if (power == "Not Enough Mana") {
+                // do something
+            }
+
             this.computer.decrementHealth(power)
             console.log("Attacked computer")
         }
@@ -208,8 +225,6 @@ class Game {
         if (i){
             this.attackIndex = this.attacks.attackHandler(x,y)
         }
-        // execute attack
-        // this.attack(attackIndex)
         
     }
 
