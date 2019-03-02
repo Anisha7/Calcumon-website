@@ -4,6 +4,11 @@
 // attacks and attack costs
 // response input to a problem
 
+// // import problem generator
+// import { getProblem } from 'problemGenerator'
+
+// // import solution API
+// import { solve } from 'solutionApi'
 // import problem generator 
 // import { getProblem } from 'problemGenerator'
 // // import solution API
@@ -12,6 +17,7 @@
 class Player {
     constructor(attacks=[], calcumon = "", health=100, mana=0, level=1) {
         // game
+        this.coins = 100
         this.mana = mana
         this.health = health // out of a 100
         this.attacks = attacks
@@ -30,6 +36,8 @@ class Player {
         this.currSolution = ''
         this.currProblemMana = 0
         this.newProblem()
+
+        this.dodge = false
         
     }
 
@@ -50,7 +58,7 @@ class Player {
         // console.log(result[0])
         // console.log('GETTING PROBLEM-SOLUTION')
         // this.currSolution = solve(result[0])
-        // console.log('this.currSolution')
+        // console.log(this.currSolution)
 
         // increment problem count
         this.problemCount += 1
@@ -58,6 +66,10 @@ class Player {
 
     incrementMana() {
         this.mana += this.currProblemMana
+    }
+
+    decrementMana(x) {
+        this.mana -= x
     }
 
     // IMPLEMENT THIS FOR VERSION ONE
@@ -78,50 +90,50 @@ class Player {
             if (this.mana < 10) {
                 return "Not Enough Mana"
             }
-            this.mana -= 10
+            console.log(this.mana)
+            this.decrementMana(10)
             return 10
         }
         if (attack == 'Kick') {
             if (this.mana < 10) {
                 return "Not Enough Mana"
             }
-            this.mana -= 10
+            this.decrementMana(10)
             return 10
         }
         if (attack == 'Fireball') {
-            if (this.mana < 20) {
+            if (this.mana < 30) {
                 return "Not Enough Mana"
             }
-            this.mana -= 20
-            return 20
+            this.decrementMana(30)
+            return 30
         }
         if (attack == 'Super Attack') {
             if (this.mana < 30) {
                 return "Not Enough Mana"
             }
-            this.mana -= 30
+            this.decrementMana(30)
             return 30
         }
         if (attack == 'Dodge') {
             if (this.mana < 20) {
                 return "Not Enough Mana"
             }
-            this.mana -= 20
-            // restore health to before opponent's attack affected it
-            // OR DODGE next attack?
+            this.decrementMana(20)
+            this.dodge = true
+            // DODGES next attack?
         }
         // health restore power
         if (attack == 'Revive 10% health') {
             if (this.mana < 20) {
                 return "Not Enough Mana"
             }
-            this.mana -= 20
+            this.decrementMana(20)
             this.health += 10
             if (this.health > 100) {
                 this.health = 100
             }
         }
-
         return 0
     }
 
@@ -171,5 +183,7 @@ class Player {
     }
 
 }
+// player = new Player()
+// player.newProblem()
 
 // export default Player
